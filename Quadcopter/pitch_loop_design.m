@@ -14,9 +14,9 @@ wp = wn*sqrt(1-2*zeta^2);
 Ma = 1/(2*zeta*sqrt(1-zeta^2));
 
 disp(['zeta= ', num2str(zeta)])
-disp(['wn= ', num2str(zeta)])
-disp(['wp= ', num2str(zeta)])
-disp(['Ma= ', num2str(zeta)])
+disp(['wn= ', num2str(wn)])
+disp(['wp= ', num2str(wp)])
+disp(['Ma= ', num2str(Ma)])th
 
 
 
