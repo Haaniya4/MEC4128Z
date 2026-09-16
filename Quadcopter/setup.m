@@ -1,4 +1,7 @@
-Jyy = 1e-3; %Mass moment of inertia about yB(kg.m^2)
+Jyy = 5.343596e-5; %Mass moment of inertia about yB(kg.m^2)
+Jxx = 5.473766e-5;%Mass moment of inertia about xB(kg.m^2)
+Jzz = 9.8934e-5;%Mass moment of inertia about zB(kg.m^2)
+
 m = 0.5; %Total mass of the quadcopter (kg)
 g = 9.81; %gravitational acceleration
 kf = 1e-5; %thrust coefficient 
