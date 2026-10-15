@@ -1,0 +1,82 @@
+function m = mission_config(type, doPlot)
+%   Output fields:
+%     m.name  mission name
+%     m.t     breakpoint times (s)        -> 1-D Lookup Table breakpoints
+%     m.z     altitude reference (m)      -> z_des lookup table data
+%     m.x     horizontal reference (m)    -> x_des lookup table data
+%     m.T     mission end time (s)        -> simulation stop time
+% This script was built with the help of AI
+
+if nargin < 2, doPlot = false; end
+
+switch lower(type)
+
+    case 'baseline'         % takeoff, hover, move 5 m, hover, land
+        segs = [ 5   2  0      % takeoff to 2 m
+                60   2  0      % hover
+                 5   2  5      % fly forward 5 m (1 m/s)
+                60   2  5      % hover
+                 5   0  5      % land
+                 10  0  5];    % wait on grounf so the landing finsihes
+
+    case 'hover_only'       % takeoff, long hover, land
+        segs = [ 5   2  0
+               120   2  0
+                 5   0  0 
+                10  0  5];    % wait on grounf so the landing finsihes
+
+
+    case 'fast_move'        % same as baseline but the 5 m move takes 2 s
+        segs = [ 5   2  0
+                60   2  0
+                 2   2  5      % 2.5 m/s, larger tilt
+                60   2  5
+                 5   0  5 
+                10  0  5];    % wait on grounf so the landing finsihes
+
+    case 'endurance'        % take off and hover until the 9 V cutoff stops the run
+        segs = [ 5     2  0     
+                2000   2  0      % hover far longer than the battery can last
+                 5     0  0 ];   % land (never reached; the cutoff ends the run first)
+
+
+    otherwise
+        error('mission_profile: unknown mission "%s"', type);
+end
+
+% Build the lookup-table vectors (start at rest on the ground)
+dur = segs(:,1);
+if any(dur <= 0)
+    error('mission_profile: every segment duration must be > 0');
+end
+
+m.name = type;
+
+m.t    = [0, cumsum(dur)'];
+m.z    = [0, segs(:,2)'];
+m.x    = [0, segs(:,3)'];
+m.T    = m.t(end);
+
+% Speed of each segment, as a sanity check
+vz = diff(m.z) ./ diff(m.t);
+vx = diff(m.x) ./ diff(m.t);
+
+fprintf('Mission "%s": %d segments, %.0f s long\n', type, numel(dur), m.T);
+
+fprintf('  max climb/descent speed = %.2f m/s, max horizontal speed = %.2f m/s\n', ...
+    max(abs(vz)), max(abs(vx)));
+
+if doPlot
+    figure('Name', ['Mission: ' type]);
+    subplot(2,1,1); 
+    plot(m.t, m.z, 'o-'); 
+    grid on; ylabel('z_{ref} (m)');
+    title(['Mission: ' type], 'Interpreter', 'none');
+    subplot(2,1,2); 
+    plot(m.t, m.x, 'o-'); 
+    grid on; 
+    ylabel('x_{ref} (m)');
+    xlabel('Time (s)');
+end
+
+end
