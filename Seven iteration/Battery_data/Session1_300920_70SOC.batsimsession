@@ -1,0 +1,80 @@
+[Session]
+Version=4.0
+TimeStamp=6.39263749137086E+17
+Id=Session1_300920_70SOC
+ScriptName=
+SessionName=Session1_300920_70SOC
+SessionComment=SOC discharge 59.691
+CultureName=en-US
+
+[TimeSeries0]
+TypeCode=Double
+DeviceId=G5
+DeviceName=G5
+Index=0
+Caption=Voltage Act.
+Unit=V
+Symbol=
+Scale=1
+Offset=0
+Color=-705280
+LineWidth=1
+Comment=
+NumberFormat={0:0.000}
+ConsolidateDateTimeIncident=FirstValue
+TimeStamp=6.39263749137086E+17
+FILE1=Session1_300920_70SOC_0_1.batsimdat
+
+[TimeSeries1]
+TypeCode=Double
+DeviceId=G5
+DeviceName=G5
+Index=1
+Caption=Current Act.
+Unit=A
+Symbol=
+Scale=1
+Offset=0
+Color=-16730066
+LineWidth=1
+Comment=
+NumberFormat={0:0.000}
+ConsolidateDateTimeIncident=FirstValue
+TimeStamp=6.39263749137086E+17
+FILE1=Session1_300920_70SOC_1_1.batsimdat
+
+[TimeSeries2]
+TypeCode=Double
+DeviceId=Battery model
+DeviceName=Battery model
+Index=2
+Caption=State of charge
+Unit=%
+Symbol=
+Scale=1
+Offset=0
+Color=-16777114
+LineWidth=1
+Comment=
+NumberFormat={0:0.000}
+ConsolidateDateTimeIncident=FirstValue
+TimeStamp=6.39263749137086E+17
+FILE1=Session1_300920_70SOC_2_1.batsimdat
+
+[TimeSeries3]
+TypeCode=Double
+DeviceId=G5
+DeviceName=G5
+Index=3
+Caption=Internal resistance
+Unit=mOhms
+Symbol=
+Scale=1
+Offset=0
+Color=-16741704
+LineWidth=1
+Comment=
+NumberFormat={0:0.000}
+ConsolidateDateTimeIncident=FirstValue
+TimeStamp=6.39263749137086E+17
+FILE1=Session1_300920_70SOC_3_1.batsimdat
