@@ -11,20 +11,6 @@ if nargin < 2, doPlot = false; end
 
 switch lower(type)
 
-    case 'baseline'         % takeoff, hover, move 5 m, hover, land
-        segs = [ 5   2  0      % takeoff to 2 m
-                60   2  0      % hover
-                 5   2  5      % fly forward 5 m (1 m/s)
-                60   2  5      % hover
-                 5   0  5      % land
-                 10  0  5];    % wait on grounf so the landing finsihes
-
-    case 'hover_only'       % takeoff, long hover, land
-        segs = [ 5   2  0
-               120   2  0
-                 5   0  0 
-                10  0  5];    % wait on grounf so the landing finsihes
-
 
     case 'fast_move'        % same as baseline but the 5 m move takes 2 s
         segs = [ 5   2  0
